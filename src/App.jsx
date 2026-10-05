@@ -2,6 +2,8 @@ import Header from './componentes/Header.jsx'
 import Sidebar from './componentes/Sidebar.jsx'
 import GameCard from './componentes/GameCard.jsx'
 
+const steam = (id) => `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg`
+
 function App() {
   return (
     <div className="dashboard">
@@ -10,12 +12,12 @@ function App() {
       <main className="dashboard__contenido">
         <h2 className="dashboard__subtitulo">Juegos destacados</h2>
         <section className="dashboard__grid">
-          <GameCard imagen="/img/juego1.svg" titulo="Nebula Drifter" estudio="Starlight Studio" />
-          <GameCard imagen="/img/juego2.svg" titulo="Tidal Echoes" estudio="Azul Games" />
-          <GameCard imagen="/img/juego3.svg" titulo="Mossy Hollow" estudio="Little Fern" />
-          <GameCard imagen="/img/juego4.svg" titulo="Ember Run" estudio="Brasa Interactive" />
-          <GameCard imagen="/img/juego5.svg" titulo="Pixel Phantoms" estudio="Neon Owl" />
-          <GameCard imagen="/img/juego6.svg" titulo="The Last Keyhole" estudio="Cerrojo Labs" />
+          <GameCard imagen={steam(367520)} titulo="Hollow Knight" estudio="Team Cherry" />
+          <GameCard imagen={steam(504230)} titulo="Celeste" estudio="Maddy Makes Games" />
+          <GameCard imagen={steam(1145360)} titulo="Hades" estudio="Supergiant Games" />
+          <GameCard imagen={steam(413150)} titulo="Stardew Valley" estudio="ConcernedApe" />
+          <GameCard imagen={steam(268910)} titulo="Cuphead" estudio="Studio MDHR" />
+          <GameCard imagen={steam(588650)} titulo="Dead Cells" estudio="Motion Twin" />
         </section>
       </main>
     </div>
