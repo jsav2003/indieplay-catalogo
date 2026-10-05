@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
 
 :root {
-  --fondo: #040309;
+  --fondo: #020106;
   --texto: #f4f4fb;
   --texto-suave: rgba(244, 244, 251, 0.62);
   --acento: #8b5cf6;
@@ -23,10 +23,10 @@ body {
   font-weight: 300;
   background-color: var(--fondo);
   background-image:
-    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(109, 56, 214, 0.22), transparent 70%),
-    radial-gradient(ellipse 50% 45% at 90% 25%, rgba(168, 40, 120, 0.12), transparent 70%),
-    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(76, 40, 170, 0.14), transparent 70%),
-    linear-gradient(160deg, #0a0614 0%, #040309 60%, #07040f 100%);
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(88, 40, 180, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 90% 25%, rgba(130, 30, 100, 0.06), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(60, 30, 140, 0.08), transparent 70%),
+    linear-gradient(160deg, #06030d 0%, #020106 60%, #04020a 100%);
   background-attachment: fixed;
 }
 
