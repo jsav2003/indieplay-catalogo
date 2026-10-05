@@ -1,6 +1,6 @@
 function Sidebar() {
   return (
-    <aside className="sidebar">
+    <aside className="sidebar liquid-glass">
       <nav>
         <ul className="sidebar__lista">
           <li className="sidebar__item sidebar__item--activo">Explorar</li>

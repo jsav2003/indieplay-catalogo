@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
+
 :root {
-  --fondo: #0f1020;
-  --panel: #181a33;
-  --borde: #2a2d52;
-  --texto: #e8e9f7;
-  --texto-suave: #9a9cc4;
+  --fondo: #05050a;
+  --texto: #f4f4fb;
+  --texto-suave: rgba(244, 244, 251, 0.62);
   --acento: #8b5cf6;
   --acento-2: #ec4899;
+  --fuente-titulo: 'Instrument Serif', Georgia, serif;
+  --fuente-texto: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 * {
@@ -15,9 +17,17 @@
 }
 
 body {
-  background: var(--fondo);
+  min-height: 100vh;
   color: var(--texto);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--fuente-texto);
+  font-weight: 300;
+  background-color: var(--fondo);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(139, 92, 246, 0.28), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 90% 25%, rgba(236, 72, 153, 0.18), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(56, 189, 248, 0.14), transparent 70%),
+    linear-gradient(160deg, #0a0a14 0%, #05050a 60%, #090711 100%);
+  background-attachment: fixed;
 }
 
 button {
@@ -26,31 +36,70 @@ button {
   border: none;
 }
 
+/* Liquid glass: blur + borde degradado */
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+  pointer-events: none;
+}
+
 /* Layout */
 .dashboard {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  grid-template-rows: 64px 1fr;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-areas:
     'header header'
     'sidebar contenido';
+  gap: 16px;
   min-height: 100vh;
+  padding: 16px;
 }
 
 .dashboard__contenido {
   grid-area: contenido;
-  padding: 28px;
+  padding: 16px 12px;
 }
 
 .dashboard__subtitulo {
-  margin-bottom: 20px;
-  font-size: 1.3rem;
+  margin-bottom: 24px;
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.4rem;
+  letter-spacing: -0.02em;
 }
 
 .dashboard__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
 }
 
 /* Header */
@@ -59,38 +108,37 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
-  background: var(--panel);
-  border-bottom: 1px solid var(--borde);
+  padding: 14px 28px;
+  border-radius: 999px;
 }
 
 .header__titulo {
-  font-size: 1.4rem;
-  background: linear-gradient(90deg, var(--acento), var(--acento-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
 }
 
 .header__login {
-  padding: 8px 18px;
-  border-radius: 8px;
-  background: transparent;
+  padding: 9px 22px;
+  border-radius: 999px;
   color: var(--texto);
-  border: 1px solid var(--acento);
-  transition: background 0.2s;
+  font-weight: 500;
+  transition: transform 0.2s, background 0.2s;
 }
 
 .header__login:hover {
-  background: var(--acento);
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* Sidebar */
 .sidebar {
   grid-area: sidebar;
-  padding: 24px 14px;
-  background: var(--panel);
-  border-right: 1px solid var(--borde);
+  align-self: start;
+  padding: 18px 12px;
+  border-radius: 24px;
 }
 
 .sidebar__lista {
@@ -101,30 +149,28 @@ button {
 }
 
 .sidebar__item {
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 11px 16px;
+  border-radius: 14px;
   color: var(--texto-suave);
+  font-weight: 400;
   cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
 .sidebar__item:hover,
 .sidebar__item--activo {
-  background: var(--borde);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--texto);
 }
 
 /* GameCard */
 .game-card {
-  background: var(--panel);
-  border: 1px solid var(--borde);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.2s, border-color 0.2s;
+  border-radius: 24px;
+  transition: transform 0.3s ease;
 }
 
 .game-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--acento);
+  transform: translateY(-6px);
 }
 
 .game-card__imagen {
@@ -135,35 +181,48 @@ button {
 }
 
 .game-card__cuerpo {
-  padding: 14px 16px 16px;
+  padding: 16px 18px 18px;
 }
 
 .game-card__titulo {
-  font-size: 1.05rem;
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
 }
 
 .game-card__estudio {
-  margin: 4px 0 14px;
+  margin: 2px 0 16px;
   font-size: 0.9rem;
   color: var(--texto-suave);
 }
 
 .game-card__boton {
   width: 100%;
-  padding: 9px;
-  border-radius: 8px;
-  color: #fff;
-  background: linear-gradient(90deg, var(--acento), var(--acento-2));
+  padding: 10px;
+  border-radius: 999px;
+  color: var(--texto);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.game-card__boton:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 @media (max-width: 640px) {
   .dashboard {
     grid-template-columns: 1fr;
-    grid-template-rows: 64px auto 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-areas:
       'header'
       'sidebar'
       'contenido';
+  }
+
+  .header {
+    padding: 12px 20px;
   }
 
   .sidebar__lista {
